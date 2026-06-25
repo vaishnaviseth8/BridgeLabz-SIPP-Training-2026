@@ -1,0 +1,43 @@
+class Vehicle {
+    protected int maxSpeed;
+    protected String model;
+
+    Vehicle(String model, int maxSpeed) {
+        this.model = model;
+        this.maxSpeed = maxSpeed;
+    }
+}
+
+interface Refuelable {
+    void refuel();
+}
+
+class ElectricVehicle extends Vehicle {
+    ElectricVehicle(String model, int maxSpeed) {
+        super(model, maxSpeed);
+    }
+
+    void charge() {
+        System.out.println(model + " is charging");
+    }
+}
+
+class PetrolVehicle extends Vehicle implements Refuelable {
+    PetrolVehicle(String model, int maxSpeed) {
+        super(model, maxSpeed);
+    }
+
+    public void refuel() {
+        System.out.println(model + " is refueling");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        ElectricVehicle ev = new ElectricVehicle("Tesla Model 3", 220);
+        PetrolVehicle pv = new PetrolVehicle("Honda City", 180);
+
+        ev.charge();
+        pv.refuel();
+    }
+}
