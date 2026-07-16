@@ -1,0 +1,19 @@
+mysql> ALTER TABLE covid_cases ADD COLUMN vaccination_rate FLOAT;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> DESCRIBE covid_cases;
++------------------+-------------+------+-----+---------+----------------+
+| Field            | Type        | Null | Key | Default | Extra          |
++------------------+-------------+------+-----+---------+----------------+
+| id               | int         | NO   | PRI | NULL    | auto_increment |
+| Country          | varchar(50) | YES  |     | NULL    |                |
+| Report_Date      | date        | YES  |     | NULL    |                |
+| Report_Time      | time        | YES  |     | NULL    |                |
+| Confirmed_Cases  | int         | YES  |     | NULL    |                |
+| Deaths           | int         | YES  |     | NULL    |                |
+| Recoveries       | int         | YES  |     | NULL    |                |
+| vaccination_rate | float       | YES  |     | NULL    |                |
++------------------+-------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)

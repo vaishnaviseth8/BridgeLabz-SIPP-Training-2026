@@ -1,0 +1,24 @@
+mysql> CREATE TABLE covid_cases (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     Country VARCHAR(50),
+    ->     Report_Date DATE,
+    ->     Report_Time TIME,
+    ->     Confirmed_Cases INT,
+    ->     Deaths INT,
+    ->     Recoveries INT
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> DESCRIBE covid_cases;
++-----------------+-------------+------+-----+---------+----------------+
+| Field           | Type        | Null | Key | Default | Extra          |
++-----------------+-------------+------+-----+---------+----------------+
+| id              | int         | NO   | PRI | NULL    | auto_increment |
+| Country         | varchar(50) | YES  |     | NULL    |                |
+| Report_Date     | date        | YES  |     | NULL    |                |
+| Report_Time     | time        | YES  |     | NULL    |                |
+| Confirmed_Cases | int         | YES  |     | NULL    |                |
+| Deaths          | int         | YES  |     | NULL    |                |
+| Recoveries      | int         | YES  |     | NULL    |                |
++-----------------+-------------+------+-----+---------+----------------+
+7 rows in set (0.03 sec)

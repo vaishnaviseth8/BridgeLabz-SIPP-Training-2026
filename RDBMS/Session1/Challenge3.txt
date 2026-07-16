@@ -1,0 +1,14 @@
+mysql> UPDATE covid_cases
+    -> SET Confirmed_Cases = 120
+    -> WHERE Country = 'India' AND Report_Date = '2020-03-15';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>
+mysql> SELECT * FROM covid_cases;
++----+---------+-------------+-------------+-----------------+--------+------------+
+| id | Country | Report_Date | Report_Time | Confirmed_Cases | Deaths | Recoveries |
++----+---------+-------------+-------------+-----------------+--------+------------+
+|  1 | India   | 2020-03-15  | 10:00:00    |             120 |      2 |         50 |
++----+---------+-------------+-------------+-----------------+--------+------------+
+1 row in set (0.00 sec)

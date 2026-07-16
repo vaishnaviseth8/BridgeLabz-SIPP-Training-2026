@@ -1,0 +1,94 @@
+mysql> CREATE DATABASE covid_db;
+ERROR 1007 (HY000): Can't create database 'covid_db'; database exists
+mysql> USE covid_db;
+Database changed
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_covid_db |
++--------------------+
+| covid_19_india     |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE covid_cases (
+    ->     Country VARCHAR(50),
+    ->     Report_Date DATE,
+    ->     Confirmed_Cases INT,
+    ->     Deaths INT,
+    ->     Recoveries INT,
+    ->     Population BIGINT
+    -> );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> CREATE TABLE covid_deaths (
+    ->     Country VARCHAR(50),
+    ->     Report_Date DATE,
+    ->     Deaths INT,
+    ->     Death_Rate DECIMAL(5,2)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_covid_db |
++--------------------+
+| covid_19_india     |
+| covid_cases        |
+| covid_deaths       |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE covid_vaccines (
+    ->     Country VARCHAR(50),
+    ->     Report_Date DATE,
+    ->     Vaccinated BIGINT,
+    ->     Vaccine_Name VARCHAR(100)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> SHOW TABLES;
++--------------------+
+| Tables_in_covid_db |
++--------------------+
+| covid_19_india     |
+| covid_cases        |
+| covid_deaths       |
+| covid_vaccines     |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO covid_cases (Country, Report_Date, Confirmed_Cases, Deaths, Recoveries, Population) VALUES
+    -> ('India', '2026-07-01', 50000, 500, 48000, 1400000000),
+    -> ('India', '2026-07-02', 51000, 510, 49000, 1400000000),
+    -> ('USA', '2026-07-01', 100000, 2000, 95000, 330000000),
+    -> ('USA', '2026-07-02', 102000, 2050, 97000, 330000000),
+    -> ('UK', '2026-07-01', 20000, 100, 19000, 67000000),
+    -> ('UK', '2026-07-02', 20500, 105, 19500, 67000000);
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> UPDATE covid_cases
+    -> SET Confirmed_Cases = 52000
+    -> WHERE Country = 'India' AND Report_Date = '2026-07-02';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> DELETE FROM covid_cases WHERE Country = 'IN';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> ALTER TABLE covid_cases ADD COLUMN vaccination_rate DECIMAL(5,2);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM covid_cases;
++---------+-------------+-----------------+--------+------------+------------+------------------+
+| Country | Report_Date | Confirmed_Cases | Deaths | Recoveries | Population | vaccination_rate |
++---------+-------------+-----------------+--------+------------+------------+------------------+
+| India   | 2026-07-01  |           50000 |    500 |      48000 | 1400000000 |             NULL |
+| India   | 2026-07-02  |           52000 |    510 |      49000 | 1400000000 |             NULL |
+| USA     | 2026-07-01  |          100000 |   2000 |      95000 |  330000000 |             NULL |
+| USA     | 2026-07-02  |          102000 |   2050 |      97000 |  330000000 |             NULL |
+| UK      | 2026-07-01  |           20000 |    100 |      19000 |   67000000 |             NULL |
+| UK      | 2026-07-02  |           20500 |    105 |      19500 |   67000000 |             NULL |
++---------+-------------+-----------------+--------+------------+------------+------------------+
+6 rows in set (0.00 sec)
