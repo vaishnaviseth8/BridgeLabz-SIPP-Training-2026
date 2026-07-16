@@ -1,0 +1,10 @@
+mysql> SELECT d.Country, d.Deaths, v.Vaccinated, v.Vaccine_Name
+    -> FROM covid_deaths d
+    -> LEFT JOIN covid_vaccines v ON d.Country = v.Country;
++---------------+---------+------------+--------------+
+| Country       | Deaths  | Vaccinated | Vaccine_Name |
++---------------+---------+------------+--------------+
+| United States | 1200000 |  300000000 | Pfizer       |
+| India         |  500000 |       NULL | NULL         |
++---------------+---------+------------+--------------+
+2 rows in set (0.00 sec)

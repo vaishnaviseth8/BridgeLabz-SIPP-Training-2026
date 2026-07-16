@@ -1,0 +1,22 @@
+mysql> CREATE TABLE continents (
+    ->     country_name VARCHAR(50),
+    ->     continent_name VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> INSERT INTO continents (country_name, continent_name)
+    -> VALUES ('United States', 'North America'), ('India', 'Asia');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT cont.continent_name, SUM(cc.Deaths) AS total_deaths
+    -> FROM covid_cases cc
+    -> INNER JOIN continents cont ON cc.Country = cont.country_name
+    -> GROUP BY cont.continent_name
+    -> ORDER BY total_deaths DESC;
++----------------+--------------+
+| continent_name | total_deaths |
++----------------+--------------+
+| Asia           |         NULL |
+| North America  |         NULL |
++----------------+---------

@@ -1,0 +1,18 @@
+mysql> UPDATE covid_deaths SET Report_Date = '2026-07-16' WHERE Country = 'United States';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE covid_deaths SET Report_Date = '2026-07-16' WHERE Country = 'India';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT Report_Date, AVG(Deaths) AS avg_daily_deaths
+    -> FROM covid_deaths
+    -> GROUP BY Report_Date
+    -> ORDER BY Report_Date ASC;
++-------------+------------------+
+| Report_Date | avg_daily_deaths |
++-------------+------------------+
+| 2026-07-16  |      850000.0000 |
++-------------+------------------+
+1 row in set (0.00 sec)
