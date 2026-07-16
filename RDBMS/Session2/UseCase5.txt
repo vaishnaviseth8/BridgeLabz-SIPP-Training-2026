@@ -1,0 +1,5 @@
+
+mysql> ALTER TABLE covid_cases
+    -> ADD CONSTRAINT uq_country_date UNIQUE (Country, Report_Date);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0

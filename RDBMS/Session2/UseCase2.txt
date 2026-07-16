@@ -1,0 +1,17 @@
+mysql> CREATE TABLE countries (
+    ->     country_code VARCHAR(3) PRIMARY KEY,
+    ->     country_name VARCHAR(50) NOT NULL
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> ALTER TABLE covid_cases ADD COLUMN country_code VARCHAR(3);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> ALTER TABLE covid_cases
+    -> ADD CONSTRAINT fk_country
+    -> FOREIGN KEY (country_code) REFERENCES countries(country_code);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0

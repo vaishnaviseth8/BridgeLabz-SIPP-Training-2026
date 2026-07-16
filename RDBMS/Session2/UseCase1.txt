@@ -1,0 +1,7 @@
+mysql> CREATE TABLE covid_cases (
+    ->     Country VARCHAR(50),
+    ->     Report_Date DATE,
+    ->     Confirmed_Cases INT,
+    ->     PRIMARY KEY (Country, Report_Date)
+    -> );
+Query OK, 0 rows affected (0.03 sec)

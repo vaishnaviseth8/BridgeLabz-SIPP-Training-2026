@@ -1,0 +1,6 @@
+
+mysql> ALTER TABLE covid_cases
+    -> ADD COLUMN Recoveries INT DEFAULT 0,
+    -> ADD COLUMN Last_Updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
