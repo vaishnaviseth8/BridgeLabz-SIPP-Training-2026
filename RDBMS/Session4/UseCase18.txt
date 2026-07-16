@@ -1,0 +1,23 @@
+mysql> INSERT INTO covid_cases (Country, Report_Date, Confirmed_Cases, Population)
+    -> VALUES ('Mumbai', '2026-07-01', 1000, 20000000),
+    ->        ('Mumbai', '2026-07-02', 1500, 20000000),
+    ->        ('Mumbai', '2026-07-03', 1200, 20000000),
+    ->        ('Mumbai', '2026-07-04', 1800, 20000000);
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT c1.Country, c1.Report_Date, c1.Confirmed_Cases
+    -> FROM covid_cases c1
+    -> WHERE c1.Country = 'Mumbai'
+    -> AND c1.Confirmed_Cases >= (SELECT MAX(c2.Confirmed_Cases)
+    ->                            FROM covid_cases c2
+    ->                            WHERE c2.Country = c1.Country
+    ->                            AND c2.Report_Date <= c1.Report_Date);
++---------+-------------+-----------------+
+| Country | Report_Date | Confirmed_Cases |
++---------+-------------+-----------------+
+| Mumbai  | 2026-07-01  |            1000 |
+| Mumbai  | 2026-07-02  |            1500 |
+| Mumbai  | 2026-07-04  |            1800 |
++---------+-------------+-----------------+
+3 rows in set (0.00 sec)

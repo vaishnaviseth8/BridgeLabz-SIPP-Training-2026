@@ -1,0 +1,9 @@
+mysql> SELECT Country, Deaths
+    -> FROM covid_deaths
+    -> WHERE Deaths > (SELECT AVG(Deaths) FROM covid_deaths);
++---------------+---------+
+| Country       | Deaths  |
++---------------+---------+
+| United States | 1200000 |
++---------------+---------+
+1 row in set (0.01 sec)
